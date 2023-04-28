@@ -1,9 +1,14 @@
 from rest_framework import serializers
-from .models import Student, StoredSessions, Syllabus
+from .models import Student, StoredSessions, Syllabus, Faculty
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
+        fields="__all__"
+
+class FacultySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Faculty
         fields="__all__"
 
 class SessionSerializer(serializers.ModelSerializer):

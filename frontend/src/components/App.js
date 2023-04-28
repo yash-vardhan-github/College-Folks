@@ -5,6 +5,7 @@ import LoadingBar from 'react-top-loading-bar'
 import LoginPage from "./loginPage";
 import Homepage from "./homepage";
 import NotFound from "./NotFound";
+import FacultyPage from "./FacultyPage";
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" render={props => <LoginPage setData={setData} setProgress={setProgress} />} />
         <Route path="/dashboard" render={props => <Homepage setData={setData} theme={theme} setTheme={setTheme} data={data} setProgress={setProgress} />}  />
+        <Route path="/faculty" render={props => <FacultyPage data={data} setProgress={setProgress}/>}/>
         <Route> <NotFound/> </Route>
       </Switch>
     </Router>

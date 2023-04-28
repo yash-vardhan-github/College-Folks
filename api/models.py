@@ -52,7 +52,7 @@ class Student(models.Model):
     Landline=models.TextField(null=True,default="",blank=True)
     ParentEmail=models.EmailField(default='',null=True,blank=True)
     CurrentSemester=models.TextField(default='',null=True,blank=True)
-    CGPA=models.DecimalField(default="",max_digits=7,decimal_places=4,null=True,blank=True)
+    Attendance=models.DecimalField(default="",max_digits=7,decimal_places=4,null=True,blank=True)
     CurAddress=models.TextField(default="",blank=True,null=True)
     CurAddress1=models.TextField(default="",blank=True,null=True)
     CurAddress2=models.TextField(default="",blank=True,null=True)
@@ -223,3 +223,25 @@ class Syllabus(models.Model):
 
     def __str__(self):
         return self.Branch
+
+class Faculty(models.Model):
+    IDNumber=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit ID Number')], default="",null=True,blank=False)
+    name = models.CharField(max_length=100, blank=False, null=False)
+    password=models.CharField(max_length=40,null=True,unique=False,blank=False,default="3201")
+    encryptedpassword=models.TextField(max_length=500,null=True,blank=True)
+    username=models.TextField(null=False,unique=True,blank=True)
+    department = models.CharField(max_length=50, blank=False, null=False)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    designation = models.CharField(max_length=100, blank=True, null=True)
+    joining_date = models.DateField(blank=True, null=True)
+    qualifications = models.TextField(blank=True, null=True)
+    research_interests = models.TextField(blank=True, null=True)
+    teaching_experience = models.TextField(blank=True, null=True)
+    professional_experience = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        self.username = "faculty." + str(self.IDNumber) + "@hbtu.ac.in"
+        super(Faculty, self).save(*args, **kwargs)

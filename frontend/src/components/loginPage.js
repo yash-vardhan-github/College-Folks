@@ -53,7 +53,47 @@ export default function LoginPage(props) {
           alert("Please Enter Your Password.")
           return false
         }
-        fetchDetails();        
+        if(user_name.includes("faculty.")){
+          loginFaculty();
+        }else{
+          fetchDetails();        
+        }
+    }
+
+    async function loginFaculty(){
+      const requestoptions={
+        method:"POST",
+        headers:{'Content-Type':'application/json',
+                    'X-CSRFToken': csrftoken
+                    },
+        body:JSON.stringify({
+            user_name:user_name,
+            password:password,
+            encryptedpassword:SHA512(password).toString()
+        }),
+      };
+      props.setProgress(10)      
+      let response = await fetch("/api/verifyfaculty",requestoptions)
+      props.setProgress(50)
+      if(response.ok){
+        props.setProgress(100)
+        let data =  await response.json()
+        history.push({
+          pathname:'/faculty/',
+        })
+        console.log(data)
+        props.setData(data)
+      }
+      else if(response.status == 404){
+        console.clear()
+        props.setProgress(100)
+        setErr("Username not found. Try Again.");
+      }
+      else if(response.status == 401){
+        console.clear()
+        props.setProgress(100)
+        setErr("Password Incorrect. Try Again.");
+      }
     }
 
     useEffect(() => {

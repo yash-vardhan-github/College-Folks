@@ -55,7 +55,6 @@
     "crypto-js": "^4.1.1",
     "react-otp-input": "^2.4.0",
     "jquery": "^3.6.0"
-    
   },
   "browser": {
     "fs": false

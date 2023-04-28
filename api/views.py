@@ -6,8 +6,8 @@ from django.core.files.base import ContentFile
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
-from .serializers import StudentSerializer,SessionSerializer,SyllabusSerializer
-from .models import Student,StoredSessions,Syllabus
+from .serializers import StudentSerializer,SessionSerializer,SyllabusSerializer,FacultySerializer
+from .models import Student,StoredSessions,Syllabus,Faculty
 from django.core.mail import send_mail
 
 import math, random
@@ -238,20 +238,25 @@ class SessionsView(generics.ListAPIView):
     serializer_class=SessionSerializer
 
 
-def update_attendance(request, student_id):
-    try:
-        student = Student.objects.get(id=student_id)
-    except Student.DoesNotExist:
-        return JsonResponse({'error': 'Student not found'}, status=status.HTTP_404_NOT_FOUND)
+class GetFaculty(APIView):
+    def get(self, request,format=None):
+        return render(request,'frontend/index.html')
+    serializer_class=FacultySerializer
+    lookup_url_kwarg_user='user_name'
+    lookup_url_kwarg_pass='password'
+    lookup_url_kwarg_encrypted='encryptedpassword'
+    def post(self,request,format=None):
 
-    if request.method == 'POST':
-        attendance = request.POST.get('attendance')
-
-        if attendance is None:
-            return JsonResponse({'error': 'Attendance value not provided'}, status=status.HTTP_400_BAD_REQUEST)
-
-        student.attendance = attendance
-        student.save()
-
-        return JsonResponse({'success': 'Attendance updated successfully'})
+        username=request.data.get(self.lookup_url_kwarg_user)
+        password=request.data.get(self.lookup_url_kwarg_pass)
+        encryptedpassword=request.data.get(self.lookup_url_kwarg_encrypted)
+        if username!=None and password!=None and encryptedpassword!=None:
+            faculty=Faculty.objects.filter(username=username)
+            if len(faculty)==1:
+                if password == self.serializer_class(faculty[0]).data["password"] or encryptedpassword == self.serializer_class(faculty[0]).data["encryptedpassword"]:
+                    datum = self.serializer_class(faculty[0]).data
+                    return Response(datum, status=status.HTTP_200_OK)
+                return Response({'Incorrect Password'},status=status.HTTP_401_UNAUTHORIZED)
+            return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
+        return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
     

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./studentRegistration.css"
 import { useState, useEffect, useRef } from 'react'
-import $ from "jQuery"
+import $ from "./jQuery"
 
 export default function studentRegistration(props) {
     const [PhotoField, setPhotoField] = useState(props.data.Photo);

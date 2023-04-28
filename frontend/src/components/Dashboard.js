@@ -45,8 +45,8 @@ export default function Dashboard({ data }) {
                           </tr>
                           <tr>
                             {/* <td>2</td> */}
-                            <td>CGPA</td>
-                            <td>{data.CGPA}</td>
+                            <td>Attendance</td>
+                            <td>{data.Attendance}</td>
                           </tr>
                           <tr>
                             {/* <td>3</td> */}
