@@ -5,6 +5,22 @@ import FacultyAttendance from './FacultyAttendance';
 import "./Faculty.css"
 
 export default function FacultyPage(props) {
+    useEffect(() => {
+        
+            // White Theme Colors 
+            document.documentElement.style.setProperty('--sidecol1', '#004064');
+            document.documentElement.style.setProperty('--col1', 'white');
+            document.documentElement.style.setProperty('--textcolor', '#010101');
+            document.documentElement.style.setProperty('--bgcol', '#85bad761');
+            document.documentElement.style.setProperty('--themeiconcolor', '#004064');
+            document.documentElement.style.setProperty('--cpcoltable', '#000000');
+            document.documentElement.style.setProperty('--selectcol', '#85bad761');
+            document.documentElement.style.setProperty('--tabcolor', '#85bad761');
+            document.documentElement.style.setProperty('--tabcolorform', '#b6b1b1');
+            document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
+        
+    }, [])
+    
     const [content, setContent] = useState("About")
     function getContent(){
         if(content=="About")return <FacultyAbout data={props}/>

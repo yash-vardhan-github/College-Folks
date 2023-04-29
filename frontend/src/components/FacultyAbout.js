@@ -1,4 +1,6 @@
 import React from 'react'
+import Accordion from "react-bootstrap/Accordion";
+import Table from "react-bootstrap/Table";
 
 export default function FacultyAbout(props) {
     console.log(props)
@@ -19,47 +21,69 @@ export default function FacultyAbout(props) {
         "professional_experience": "8 Yrs"
     }
   return (
-    <div className='flist'>
-        <div className='frow'>
-            <div className='fbold'>IDNumber</div>
-            <div className='fget'>{data.IDNumber}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Name</div>
-            <div className='fget'>{data.name}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Department</div>
-            <div className='fget'>{data.department}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Phone Number</div>
-            <div className='fget'>{data.phone_number}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Designation</div>
-            <div className='fget'>{data.designation}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Joining Date</div>
-            <div className='fget'>{data.joining_date}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Qualifications</div>
-            <div className='fget'>{data.qualifications}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Research Interests</div>
-            <div className='fget'>{data.research_interests}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Teaching Experience</div>
-            <div className='fget'>{data.teaching_experience}</div>
-        </div>
-        <div className='frow'>
-            <div className='fbold'>Professional Experience</div>
-            <div className='fget'>{data.professional_experience}</div>
-        </div>
-    </div>
+    <>
+    <div className="card shadow-sm" id="card">
+              <div className="card-header bg-transparent border-0">
+                <h3 className="mb-0">
+                  <i className="far fa-clone pr-1"></i>{" General Information"}
+                </h3>
+                <Table striped bordered hover variant="dark">
+                        <tbody>
+                          <tr>
+                            {/* <td>1</td> */}
+                            <td>IDNumber</td>
+                            <td>{data.IDNumber}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Name</td>
+                            <td>{data.name}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>3</td> */}
+                            <td>Designation</td>
+                            <td>{data.designation}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Department</td>
+                            <td>{data.department}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Phone Number</td>
+                            <td>{data.phone_number}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Joining Date</td>
+                            <td>{data.joining_date}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Qualifications</td>
+                            <td>{data.qualifications}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Research Interests</td>
+                            <td>{data.research_interests}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Experience</td>
+                            <td>{data.professional_experience}</td>
+                          </tr>
+                          <tr>
+                            {/* <td>2</td> */}
+                            <td>Teaching Experience</td>
+                            <td>{data.teaching_experience}</td>
+                          </tr>
+                        </tbody>
+                </Table>
+              </div>
+              <div className="card-body pt-0"></div>
+            </div>
+    </>
   )
 }
