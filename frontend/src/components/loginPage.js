@@ -81,7 +81,7 @@ export default function LoginPage(props) {
         history.push({
           pathname:'/faculty/',
         })
-        console.log(data)
+        localStorage.setItem("faculty",JSON.stringify(data))
         props.setData(data)
       }
       else if(response.status == 404){
@@ -97,6 +97,11 @@ export default function LoginPage(props) {
     }
 
     useEffect(() => {
+      if(localStorage.getItem("faculty")){
+        history.push({
+          pathname:'/faculty/',
+        })
+      }
       fetchDetailsBySession();
     }, []);
 

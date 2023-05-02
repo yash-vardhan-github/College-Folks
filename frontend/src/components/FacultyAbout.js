@@ -1,89 +1,99 @@
-import React from 'react'
+import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Table from "react-bootstrap/Table";
-
+import { useEffect } from "react";
 export default function FacultyAbout(props) {
-    console.log(props)
-    const data = {
-        "id": 1,
-        "IDNumber": "100000001",
-        "name": "Varun Kumar",
-        "password": "3201",
-        "encryptedpassword": "",
-        "username": "faculty.100000001@hbtu.ac.in",
-        "department": "Computer Science and Engineering",
-        "phone_number": "+91 2145521122",
-        "designation": "Professor",
-        "joining_date": "2023-04-28",
-        "qualifications": "PHD, MSC, MTech, BTech",
-        "research_interests": "Data Science",
-        "teaching_experience": "5 Yrs",
-        "professional_experience": "8 Yrs"
-    }
-  return (
-    <>
-    <div className="card shadow-sm" id="card">
-              <div className="card-header bg-transparent border-0">
-                <h3 className="mb-0">
-                  <i className="far fa-clone pr-1"></i>{" General Information"}
-                </h3>
-                <Table striped bordered hover variant="dark">
-                        <tbody>
-                          <tr>
-                            {/* <td>1</td> */}
-                            <td>IDNumber</td>
-                            <td>{data.IDNumber}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Name</td>
-                            <td>{data.name}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>3</td> */}
-                            <td>Designation</td>
-                            <td>{data.designation}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Department</td>
-                            <td>{data.department}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Phone Number</td>
-                            <td>{data.phone_number}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Joining Date</td>
-                            <td>{data.joining_date}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Qualifications</td>
-                            <td>{data.qualifications}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Research Interests</td>
-                            <td>{data.research_interests}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Experience</td>
-                            <td>{data.professional_experience}</td>
-                          </tr>
-                          <tr>
-                            {/* <td>2</td> */}
-                            <td>Teaching Experience</td>
-                            <td>{data.teaching_experience}</td>
-                          </tr>
-                        </tbody>
-                </Table>
-              </div>
-              <div className="card-body pt-0"></div>
-            </div>
-    </>
-  )
+  if (props.data.data) {
+    return (
+      <div className="flist">
+        <div className="frow">
+          <div className="fbold">IDNumber</div>
+          <div className="fget">{props.data.data.IDNumber}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Name</div>
+          <div className="fget">{props.data.data.name}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Department</div>
+          <div className="fget">{props.data.data.department}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Phone Number</div>
+          <div className="fget">{props.data.data.phone_number}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Designation</div>
+          <div className="fget">{props.data.data.designation}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Joining Date</div>
+          <div className="fget">{props.data.data.joining_date}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Qualifications</div>
+          <div className="fget">{props.data.data.qualifications}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Research Interests</div>
+          <div className="fget">{props.data.data.research_interests}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Teaching Experience</div>
+          <div className="fget">{props.data.data.teaching_experience}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Professional Experience</div>
+          <div className="fget">{props.data.data.professional_experience}</div>
+        </div>
+      </div>
+    );
+  }
+  else if(localStorage.getItem("faculty")){
+    return (
+      <div className="flist">
+        <div className="frow">
+          <div className="fbold">IDNumber</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).IDNumber}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Name</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).name}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Department</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).department}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Phone Number</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).phone_number}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Designation</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).designation}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Joining Date</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).joining_date}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Qualifications</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).qualifications}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Research Interests</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).research_interests}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Teaching Experience</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).teaching_experience}</div>
+        </div>
+        <div className="frow">
+          <div className="fbold">Professional Experience</div>
+          <div className="fget">{JSON.parse(localStorage.getItem("faculty")).professional_experience}</div>
+        </div>
+      </div>
+    );
+  }
+  return (<></>)
 }

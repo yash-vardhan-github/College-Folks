@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 
+
 # Create your models here.
 # def upload_path(instance, filename):
 #     return '/'.join({'images/'+str(instance.UniversityRollNo), filename})
@@ -52,7 +53,7 @@ class Student(models.Model):
     Landline=models.TextField(null=True,default="",blank=True)
     ParentEmail=models.EmailField(default='',null=True,blank=True)
     CurrentSemester=models.TextField(default='',null=True,blank=True)
-    Attendance=models.DecimalField(default="",max_digits=7,decimal_places=4,null=True,blank=True)
+    Attendance=models.TextField(default="",null=True,blank=True)
     CurAddress=models.TextField(default="",blank=True,null=True)
     CurAddress1=models.TextField(default="",blank=True,null=True)
     CurAddress2=models.TextField(default="",blank=True,null=True)
@@ -225,7 +226,7 @@ class Syllabus(models.Model):
         return self.Branch
 
 class Faculty(models.Model):
-    IDNumber=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{9}$', message='Required 9 Digit ID Number')], default="",null=True,blank=False)
+    IDNumber=models.CharField(max_length=9, validators=[RegexValidator(regex='^[0-9]{4}$', message='Required 4 Digit ID Number')], default="",null=True,blank=False)
     name = models.CharField(max_length=100, blank=False, null=False)
     password=models.CharField(max_length=40,null=True,unique=False,blank=False,default="3201")
     encryptedpassword=models.TextField(max_length=500,null=True,blank=True)
@@ -245,3 +246,5 @@ class Faculty(models.Model):
     def save(self, *args, **kwargs):
         self.username = "faculty." + str(self.IDNumber) + "@hbtu.ac.in"
         super(Faculty, self).save(*args, **kwargs)
+
+

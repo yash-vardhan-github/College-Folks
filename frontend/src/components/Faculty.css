@@ -8,19 +8,21 @@
     justify-content: center;
     align-items: center;
     background-color: #d1e5f0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .fupper{
     height: 20vh;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 .fselector{
-    height: 40px;
+    height: 55px;
     width: 70%;
     background-color: rgb(255, 255, 252);
     display: flex;
@@ -32,6 +34,7 @@
 
 .foptions{
     width: 33.33%;
+    height: 100%;
     padding: 15px;
     justify-content: center;
     align-items: center;
@@ -63,17 +66,27 @@
     border-radius: 5px;
 }
 
-.list{
+.flist{
     position: relative;
     width: 100%;
-    height: 10px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     font-size: larger;
     color: black;
     align-items: center;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 20px;
 }
+
+@media (max-width: 1000px) {
+    .FacultyPage{
+        font-size: 1.5vw;
+    }
+  }
 
 .frow{
     width: 100%;
@@ -84,7 +97,7 @@
 }
 
 .fbold{
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -93,9 +106,50 @@
 }
 
 .fget{
-    width: 70%;
+    width: 60%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
 }
+
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}
+
+.attendance-form__label {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.attendance-form__input {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.attendance-form__button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #032d5d;
+  color: #fff;
+  cursor: pointer;
+  width: 20%;
+  font-size: larger;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.attendance-form__button:hover {
+  background-color: #0062cc;
+}
+

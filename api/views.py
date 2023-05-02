@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from .serializers import StudentSerializer,SessionSerializer,SyllabusSerializer,FacultySerializer
 from .models import Student,StoredSessions,Syllabus,Faculty
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 import math, random
  
@@ -260,3 +262,74 @@ class GetFaculty(APIView):
             return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
         return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
     
+
+class UpdateAttendance(APIView):
+    def get(self, request,format=None):
+        return render(request,'frontend/index.html')
+    def post(self,request,format=None):
+        rollno=request.data.get('rollno')
+        attendance=request.data.get('attendance')
+        if rollno!=None and attendance!=None:
+            student = Student.objects.filter(UniversityRollNo=rollno)
+            if len(student)==1:
+                student[0].Attendance = attendance
+                student[0].save(update_fields=['Attendance'])
+                return Response(status=status.HTTP_200_OK)
+            return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
+        return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
+
+
+class UpdateResult(APIView):
+    def get(self, request,format=None):
+        return render(request,'frontend/index.html')
+    def post(self,request,format=None):
+        rollno = request.data.get('rollno')
+        semester = request.data.get('semester')
+        filedata = request.data.get('file')
+        
+        # print(rollno)
+        # print(semester)
+        # print(filedata)
+        if rollno!=None and semester!=None and filedata!=None:
+            student = Student.objects.filter(UniversityRollNo=rollno)
+            if len(student)==1:
+                if ";base64," in filedata:
+                    format, xlsstr = filedata.split(';base64,') 
+                    ext = format.split('/')[-1] 
+                    file = ContentFile(base64.b64decode(xlsstr), name = 'ResultSem' + semester + '.xlsx')
+                if semester=='1':
+                    student[0].ResultSem1 = file
+                    student[0].save(update_fields=['ResultSem1'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='2':
+                    student[0].ResultSem2 = file
+                    student[0].save(update_fields=['ResultSem2'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='3':
+                    student[0].ResultSem3 = file
+                    student[0].save(update_fields=['ResultSem3'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='4':
+                    student[0].ResultSem4 = file
+                    student[0].save(update_fields=['ResultSem4'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='5':
+                    student[0].ResultSem5 = file
+                    student[0].save(update_fields=['ResultSem5'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='6':
+                    student[0].ResultSem6 = file
+                    student[0].save(update_fields=['ResultSem6'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='7':
+                    student[0].ResultSem7 = file
+                    student[0].save(update_fields=['ResultSem7'])
+                    return Response(status=status.HTTP_200_OK)
+                if semester=='8':
+                    student[0].ResultSem8 = file
+                    student[0].save(update_fields=['ResultSem8'])
+                    return Response(status=status.HTTP_200_OK)
+            return Response({'Bad Request:','User Does not exist'},status=status.HTTP_404_NOT_FOUND)
+        return Response({'Bad Request:','Request parameter Not meant'},status=status.HTTP_400_BAD_REQUEST)
+
+

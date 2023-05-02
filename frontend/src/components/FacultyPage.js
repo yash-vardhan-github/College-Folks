@@ -18,6 +18,12 @@ export default function FacultyPage(props) {
             document.documentElement.style.setProperty('--tabcolor', '#85bad761');
             document.documentElement.style.setProperty('--tabcolorform', '#b6b1b1');
             document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
+
+            window.setTimeout(()=>{
+                if(!localStorage.getItem("faculty")){
+                    window.location.href = "/";
+                }
+            },50)
         
     }, [])
     
@@ -43,7 +49,7 @@ export default function FacultyPage(props) {
                 {getContent()}
             </div>
             <div className='flower'>
-                <button className='flogout' onClick={()=>{window.location.href = "/"}}>Logout</button>
+                <button className='flogout' onClick={()=>{window.location.href = "/"; localStorage.removeItem("faculty")}}>Logout</button>
             </div>
         </div>
     )
