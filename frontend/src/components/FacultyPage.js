@@ -24,6 +24,7 @@ export default function FacultyPage(props) {
                     window.location.href = "/";
                 }
             },50)
+            document.title="Faculty Portal | HBTU"
         
     }, [])
     
